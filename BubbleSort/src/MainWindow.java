@@ -5,13 +5,13 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class MainWindow extends JFrame {
-    public MainWindow() {
+    public MainWindow() {                //по принципам "Чистого кода в Java" в конструкторе класса не должно быть лишнего кода
         Frame();
         addComponentsOnMainFrame();
         buttonsActionListeners();
     }
 
-    public void Frame() {
+    public void Frame() {               //настройка окна
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setResizable(true);
         setSize(new Dimension(800, 300));
@@ -31,12 +31,12 @@ public class MainWindow extends JFrame {
     private JButton buttonAccept = new JButton("Accept");
     private JTextArea textArea = new JTextArea(4 ,40);
     private JScrollPane scrollPane;
-    private String string = "";
+    private String string = "";     //данная переменная будет использована для видимости процесса работы приложения на JTextArea
     public ArrayList<Integer> arrayList = new ArrayList<Integer>();
     private String arrayOutPut = "";
 
     public void addComponentsOnMainFrame() {
-        JPanel contentPane = new JPanel();
+        JPanel contentPane = new JPanel();   //основная панель на которой будут находиться другие 2 панели
         contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.LINE_AXIS));
 
 
@@ -67,12 +67,12 @@ public class MainWindow extends JFrame {
         paneWithTextArea.add(buttonAccept);
 
 
-        contentPane.add(paneWithTextArea);
-        contentPane.add(paneWithNumPad);
+        contentPane.add(paneWithTextArea);             //добавляем панели с NumPad и с Полем ввода
+        contentPane.add(paneWithNumPad);               //
 
         getContentPane().add(contentPane);
-        contentPane.revalidate();
-    }
+        contentPane.revalidate();                       //данная строка решает проблему с отображением компонентов (без неё, до изменения 
+    }                                                   //ширины или высоты окна, ничего на окне не появляется)
 
     public void buttonsActionListeners() {
         button.addActionListener(new ActionListener() {
@@ -177,7 +177,7 @@ public class MainWindow extends JFrame {
                 }
         }
 
-        for (int i = 0; i < arrayList.size(); i++) {
+        for (int i = 0; i < arrayList.size(); i++) {            //Вывод отсортированного массива в текстовое поле
             arrayOutPut += arrayList.get(i).toString();
         }
 
